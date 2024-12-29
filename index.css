@@ -16,7 +16,7 @@ a {
 #preview-markdown-div img {
     border-radius: 10px;
     border: 2px solid white;
-    width: 80%;;
+    /* width: 80%;; */
 }
 
 #rawMarkdownUrl::placeholder {
