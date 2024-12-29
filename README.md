@@ -10,3 +10,5 @@ The main idea here is that I am using `showdown.js` to convert markdown content 
 
 - [showdown.js](https://showdownjs.com)
 - `bootstrap v5` for styling
+
+![cat_gif](https://raw.githubusercontent.com/Blankscreen-exe/host-a-blog-without-a-backend/refs/heads/main/docs/cat.gif)
