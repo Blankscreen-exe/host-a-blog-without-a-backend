@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Host A Blog Without Backend</title>
 
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
     <script src="showdown-2.1.0.js"></script>
 
     <!-- Bootstrap -->
@@ -14,14 +16,17 @@
     <link href="index.css" rel="stylesheet">
 
 </head>
-<body class="bg-light">
+<body class="text-light">
     <header class="p-3 text-bg-dark">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <!-- <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
               <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
             </a> -->
-            <h3>Host A <span class="text-warning">Blog</span> Without A <span class="text-warning">Backend</span></h3>
+            <span class="d-flex align-items-center">
+                <img src="https://raw.githubusercontent.com/Blankscreen-exe/host-a-blog-without-a-backend/refs/heads/main/assets/favicon.svg" width="30px" class="mx-2 border border-light p-1 rounded">
+                <h3>Host A <span class="text-warning">Blog</span> Without A <span class="text-warning">Backend</span></h3>
+            </span>
     
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
               <!-- <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
@@ -42,8 +47,9 @@
         </div>
       </header>
 
-      <div class="px-5 pt-5 text-dark">
-        <p><strong>Note:</strong> This demo is a part of my <a href="">blog post that I published on medium.com</a>. For information about what this is kindly go to my blog where I explained all this in detail.</p>
+      <div class="px-5 pt-5">
+        <!-- TODO: add URL here -->
+        <p ><strong>Note:</strong> This demo is a part of my <a href="">blog post that I published on medium.com</a>. For information about what this is kindly go to my blog where I explained all this in detail.</p>
         <p>The main idea here is that I am using <code>showdown.js</code> to convert markdown content into pure, renderable HTML content. As for the Markdown content you see below, I am getting it from github raw URLs. These are special URLs which start like this <code>https://raw.githubusercontent.com</code></p>
       </div>
       
@@ -67,7 +73,11 @@
         
     </div>
 
-    <div id="preview-markdown-div" class="mx-5 p-2  text-secondary border border-warning rounded">
+    <div class="mx-5 mb-3 p-2 border border-warning rounded bg-warning text-dark">
+        <strong>Markdown URL:</strong> <span id="preview-markdown-url" class="bg-light p-1 rounded">None Selected</span>
+    </div>
+
+    <div id="preview-markdown-div" class="mx-5 p-2 border border-warning rounded">
         <h2>Your Markdown content will appear here as HTML</h2>
     </div>
 
@@ -87,6 +97,7 @@
                     
                 } catch (error) {
                     console.error('Error fetching the Markdown file:', error);
+                    alert('Double check your Url. It did not return raw markdown content');
                 }
 
                 if (md_content) {
@@ -97,10 +108,13 @@
             }
 
             document.querySelector('#getRawMarkdownUrl').addEventListener('click', (event) => {
-                console.log(document.getElementById('rawMarkdownUrl').value)
-                // const rawUrl = "https://raw.githubusercontent.com/Blankscreen-exe/Blankscreen-exe/refs/heads/main/README.md";
                 let rawMarkdownUrl = document.querySelector('#rawMarkdownUrl').value
-                renderMarkdownInElement('#preview-markdown-div', rawMarkdownUrl)
+                if (rawMarkdownUrl) {
+                    document.getElementById('preview-markdown-url').innerHTML = rawMarkdownUrl;
+                    renderMarkdownInElement('#preview-markdown-div', rawMarkdownUrl);
+                } else {
+                    alert('Enter a markdown Url First. These Urls must provide the raw content of a markdown file.');
+                }
             })
     });
     </script>

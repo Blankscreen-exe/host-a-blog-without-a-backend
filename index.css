@@ -1,5 +1,28 @@
+body {
+    background-color: #353535;
+}
+
 code {
     padding: 3px 5px;
-    background-color: #f4f78e94;
+    background-color: #f4f78e;
     border-radius: 3px;
+}
+
+a {
+    color: #f4f78e;
+    font-weight: bold;
+}
+
+img {
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+#rawMarkdownUrl::placeholder {
+    color: rgb(219, 219, 219);
+    font-style: italic;   
+}
+
+#preview-markdown-url {
+    overflow-wrap: anywhere;
 }
