@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host A Blog Without Backend</title>
+
+    <script src="showdown-2.1.0.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="bootstrap-5.3.3.min.js"></script>
+    <link href="bootstrap-5.3.3.min.css" rel="stylesheet">
+
+    <link href="index.css" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+              <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            </a> -->
+            <h3>Host A <span class="text-warning">Blog</span> Without A <span class="text-warning">Backend</span></h3>
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <!-- <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">About</a></li> -->
+            </ul>
+    
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+              <input type="text" id="rawMarkdownUrl" class="form-control form-control-dark text-bg-dark" placeholder="Raw markdown URL..." aria-label="Raw markdown URL">
+            </form>
+    
+            <div class="text-end">
+              <button type="button" id="getRawMarkdownUrl" class="btn btn-outline-warning me-2">Render As HTML</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="px-5 pt-5 text-dark">
+        <p><strong>Note:</strong> This demo is a part of my <a href="">blog post that I published on medium.com</a>. For information about what this is kindly go to my blog where I explained all this in detail.</p>
+        <p>The main idea here is that I am using <code>showdown.js</code> to convert markdown content into pure, renderable HTML content. As for the Markdown content you see below, I am getting it from github raw URLs. These are special URLs which start like this <code>https://raw.githubusercontent.com</code></p>
+      </div>
+      
+      <!-- <div class="p-5">
+        <div class="accordion">
+            <div class="accordion-item ">
+                <h2 class="accordion-header ">
+                    <button class="accordion-button text-secondary fw-bold " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show p-2 text-secondary">
+                    <div class="accordion-body">
+                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        
+        
+    </div>
+
+    <div id="preview-markdown-div" class="mx-5 p-2  text-secondary border border-warning rounded">
+        <h2>Your Markdown content will appear here as HTML</h2>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded",  () => {
+        
+        document.querySelector('#rawMarkdownUrl').value = "https://raw.githubusercontent.com/Blankscreen-exe/Blankscreen-exe/refs/heads/main/README.md";
+
+        async function renderMarkdownInElement(elementSelector, markdownRawUrl) {
+                let md_content = "";
+                try {
+                    const response = await fetch(markdownRawUrl);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    md_content = await response.text();
+                    
+                } catch (error) {
+                    console.error('Error fetching the Markdown file:', error);
+                }
+
+                if (md_content) {
+                    let converter = new showdown.Converter();
+                    var html_content = converter.makeHtml(md_content);
+                    document.querySelector(elementSelector).innerHTML = html_content
+                }
+            }
+
+            document.querySelector('#getRawMarkdownUrl').addEventListener('click', (event) => {
+                console.log(document.getElementById('rawMarkdownUrl').value)
+                // const rawUrl = "https://raw.githubusercontent.com/Blankscreen-exe/Blankscreen-exe/refs/heads/main/README.md";
+                let rawMarkdownUrl = document.querySelector('#rawMarkdownUrl').value
+                renderMarkdownInElement('#preview-markdown-div', rawMarkdownUrl)
+            })
+    });
+    </script>
+</body>
+</html>
