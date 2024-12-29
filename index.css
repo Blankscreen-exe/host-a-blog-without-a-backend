@@ -13,9 +13,10 @@ a {
     font-weight: bold;
 }
 
-img {
+#preview-markdown-div img {
     border-radius: 10px;
     border: 2px solid white;
+    width: 80%;;
 }
 
 #rawMarkdownUrl::placeholder {
@@ -41,4 +42,10 @@ table thead {
     background-color: rgba(var(--bs-warning-rgb)) ;
     color: rgb(71, 71, 71);
     font-weight: bold;
+}
+
+blockquote {
+    padding: 10px;
+    border-left: 3px solid black;
+    background-color: #292929d6;
 }
