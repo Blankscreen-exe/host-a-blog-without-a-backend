@@ -26,3 +26,19 @@ img {
 #preview-markdown-url {
     overflow-wrap: anywhere;
 }
+
+table {
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 15px;
+}
+
+table td {
+    padding:5px 10px;
+    border: 1px solid rgb(170, 170, 170);
+}
+
+table thead {
+    background-color: rgba(var(--bs-warning-rgb)) ;
+    color: rgb(71, 71, 71);
+    font-weight: bold;
+}
