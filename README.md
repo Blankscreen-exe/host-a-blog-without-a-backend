@@ -4,7 +4,7 @@
 
 The main idea here is that I am using `showdown.js` to convert markdown content into pure, renderable HTML content. As for the Markdown content you see below, I am getting it from github raw URLs. These are special URLs which start like this `https://raw.githubusercontent.com`
 
-> See a [Live Demo](#)
+> See a [Live Demo](https://blankscreen-exe.github.io/host-a-blog-without-a-backend/)
 
 ## Technologies
 
