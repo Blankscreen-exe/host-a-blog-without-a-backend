@@ -19,6 +19,10 @@ a {
     /* width: 80%;; */
 }
 
+*:has(> img) {
+    overflow-x: scroll;
+}
+
 #rawMarkdownUrl::placeholder {
     color: rgb(219, 219, 219);
     font-style: italic;   
