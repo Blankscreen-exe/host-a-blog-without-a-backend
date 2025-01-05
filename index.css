@@ -20,7 +20,7 @@ a {
 }
 
 *:has(> img) {
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 #rawMarkdownUrl::placeholder {
